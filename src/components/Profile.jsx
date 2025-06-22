@@ -21,9 +21,12 @@ export default function Profile() {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/me", {
-          headers: { Authorization: `Bearer ${getToken()}` },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/auth/me`,
+          {
+            headers: { Authorization: `Bearer ${getToken()}` },
+          }
+        );
         setUser(res.data);
         setFormData({ name: res.data.name, email: res.data.email });
       } catch (err) {
@@ -58,9 +61,13 @@ export default function Profile() {
     if (!validateProfileForm()) return;
     setUpdating(true);
     try {
-      await axios.put("http://localhost:5000/api/auth/profile", formData, {
-        headers: { Authorization: `Bearer ${getToken()}` },
-      });
+      await axios.put(
+        "${import.meta.env.VITE_API_BASE_URL}/auth/profile",
+        formData,
+        {
+          headers: { Authorization: `Bearer ${getToken()}` },
+        }
+      );
       toast.success("Profile updated");
       setUser((prev) => ({ ...prev, ...formData }));
       setEditOpen(false);
@@ -77,7 +84,7 @@ export default function Profile() {
     setChangingPass(true);
     try {
       await axios.put(
-        "http://localhost:5000/api/auth/change-password",
+        "${import.meta.env.VITE_API_BASE_URL}/auth/change-password",
         passwords,
         { headers: { Authorization: `Bearer ${getToken()}` } }
       );

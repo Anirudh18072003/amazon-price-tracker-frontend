@@ -14,7 +14,7 @@ export default function ResetPassword() {
     setLoading(true);
     try {
       const res = await axios.post(
-        `http://localhost:5000/api/auth/reset-password/${token}`,
+        `${import.meta.env.VITE_API_BASE_URL}/auth/reset-password/${token}`,
         { newPassword }
       );
       toast.success(res.data.message || "✅ Password reset successful!");

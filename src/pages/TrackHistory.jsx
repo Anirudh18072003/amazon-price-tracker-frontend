@@ -30,7 +30,7 @@ export default function TrackHistory() {
 
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/products/history/${productId}`,
+          `${import.meta.env.VITE_API_BASE_URL}/products/history/${productId}`,
           {
             headers: { Authorization: `Bearer ${getToken()}` },
           }

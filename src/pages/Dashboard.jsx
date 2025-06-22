@@ -12,11 +12,14 @@ export default function Dashboard() {
 
   const fetchProducts = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/products", {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      });
+      const res = await axios.get(
+        `${import.meta.env.VITE_API_BASE_URL}/products`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
       setProducts(res.data);
     } catch (err) {
       toast.error("❌ Failed to fetch products");
@@ -27,11 +30,14 @@ export default function Dashboard() {
 
   const deleteProduct = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/products/${id}`, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      });
+      await axios.delete(
+        `${import.meta.env.VITE_API_BASE_URL}/products/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
       setProducts((prev) => prev.filter((p) => p._id !== id));
       toast.success("🗑️ Product removed");
     } catch (err) {

@@ -14,9 +14,12 @@ export default function Navbar() {
     const fetchUser = async () => {
       if (!loggedIn) return setLoading(false);
       try {
-        const res = await axios.get("http://localhost:5000/api/auth/me", {
-          headers: { Authorization: `Bearer ${getToken()}` },
-        });
+        const res = await axios.get(
+          `${import.meta.env.VITE_API_BASE_URL}/auth/me`,
+          {
+            headers: { Authorization: `Bearer ${getToken()}` },
+          }
+        );
         setUser(res.data);
       } catch (err) {
         console.error("Failed to load user profile:", err);
