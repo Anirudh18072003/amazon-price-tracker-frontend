@@ -24,10 +24,7 @@ export default function Contact() {
 
     setLoading(true);
     try {
-      await axios.post(
-        `${import.meta.env.VITE_API_BASE_URL}/api/contact`,
-        form
-      );
+      await axios.post(`${import.meta.env.VITE_API_BASE_URL}/contact`, form);
       toast.success("📨 Message sent successfully!");
       setForm({
         name: "",
