@@ -8,7 +8,7 @@ export default function About() {
       <div className="min-h-screen bg-gradient-to-br from-white to-blue-50 py-16 px-4">
         <div className="max-w-5xl mx-auto bg-white p-10 rounded-2xl shadow-lg">
           <h1 className="text-4xl font-bold text-center text-blue-700 mb-8">
-            About Amazon Price Tracker
+            Amazon Price Tracker
           </h1>
 
           <div className="space-y-8 text-gray-700 text-lg leading-relaxed">
