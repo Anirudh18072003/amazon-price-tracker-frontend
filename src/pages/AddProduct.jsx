@@ -20,11 +20,15 @@ export default function AddProduct() {
 
     setLoading(true);
     try {
-      await axios.post("http://localhost:5000/api/products/add", form, {
-        headers: {
-          Authorization: `Bearer ${getToken()}`,
-        },
-      });
+      await axios.post(
+        `${import.meta.env.VITE_API_BASE_URL}/api/products/add`,
+        form,
+        {
+          headers: {
+            Authorization: `Bearer ${getToken()}`,
+          },
+        }
+      );
       toast.success("✅ Product added successfully!");
       navigate("/");
     } catch (err) {
