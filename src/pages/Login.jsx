@@ -27,9 +27,18 @@ export default function Login() {
       saveToken(res.data.token);
       navigate("/dashboard");
     } catch (err) {
+      const status = err.response?.status;
       const msg = err.response?.data?.message || "Invalid email or password";
+
+      if (status === 401 && msg === "Token expired") {
+        toast.error("⚠️ Session expired. Please log in again.");
+      } else if (status === 401) {
+        toast.error("❌ Invalid email or password");
+      } else {
+        toast.error("❌ " + msg);
+      }
+
       setError(msg);
-      toast.error("❌ " + msg);
     } finally {
       setLoading(false);
     }
